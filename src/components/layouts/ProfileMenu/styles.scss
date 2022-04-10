@@ -1,0 +1,17 @@
+@import "../../../assets/styles/_global.scss";
+
+.profileMenu {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &__title {
+    color: $black;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    margin-left: 12px;
+    margin-right: 6px;
+    margin-top: 10px;
+  }
+}

@@ -1,0 +1,32 @@
+%rowNormal {
+  display: flex;
+  align-items: center;
+}
+
+%rowCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%rowSpaceBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+%rowTop {
+  display: flex;
+  align-items: flex-start;
+}
+
+%rowBottom {
+  display: flex;
+  align-items: flex-end;
+}
+
+%card {
+  background: $white;
+  box-shadow: 2px 2px 20px rgba(81, 81, 81, 0.06);
+  border-radius: 12px;
+}

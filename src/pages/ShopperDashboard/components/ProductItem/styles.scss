@@ -1,0 +1,120 @@
+@import "../../../../assets/styles/_global.scss";
+
+.productItem {
+  max-width: 144px;
+  cursor: pointer;
+
+  &__image {
+    border: 1px solid $grey-005;
+    border-radius: 12px;
+    box-sizing: border-box;
+  }
+
+  &__title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    margin: 8px 0px 4px 0px;
+  }
+
+  &__description {
+    margin: 0;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: $black;
+  }
+
+  &__price {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    margin: 8px 0px 4px 0px;
+    padding-bottom: 10px;
+  }
+}
+
+.productItemView2 {
+  &__body {
+    @extend %rowNormal;
+
+    &-infor {
+      width: 100%;
+      margin-left: 16px;
+
+      &-top {
+        @extend %rowSpaceBetween;
+        align-items: flex-start;
+
+        &-title {
+          margin: 0;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 18px;
+          font-weight: 600;
+        }
+
+        &-totalAmount {
+          margin-top: 4px;
+          margin-bottom: 2px;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 18px;
+          color: $grey-002;
+        }
+
+        &-code {
+          font-style: normal;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 18px;
+          color: $grey-003;
+          margin: 0px;
+        }
+
+        &-price {
+          margin: 0px;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 19px;
+        }
+      }
+
+      &-bottom {
+        @extend %rowSpaceBetween;
+        align-items: flex-end;
+
+        &-text {
+          margin: 0;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 19px;
+          color: $black;
+        }
+
+        &-buttonContainer {
+          padding: 6px 14px;
+          border: 1px solid $primary;
+          box-sizing: border-box;
+          border-radius: 8px;
+          cursor: pointer;
+
+          &-text {
+            color: $primary;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 19px;
+            margin: 0px;
+          }
+
+          &-orderDetail {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
