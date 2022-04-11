@@ -2,6 +2,7 @@
 import card from "../assets/images/card/card.png";
 import message from "../assets/images/card/message.png";
 import logo1 from "../assets/images/logo1.png";
+import cardback from "../assets/images/cardback.png";
 
 //back images
 import backimg1 from "../assets/backimgs/backimg_1.png"
@@ -15,8 +16,9 @@ import rattanChair from "../assets/images/products/rattan-chair.png";
 import massageOil from "../assets/images/products/massage-oil.png"
 
 import flat from "../assets/images/flat.png";
-import bodyshop from "../assets/images/bodyshop.png";
+import alamin from "../assets/images/alamin.png";
 import burket from "../assets/images/burket.png";
+import bag from "../assets/images/bag.png";
 
 import bodyShop from "../assets/images/merchant/body-shop.png";
 import senka from "../assets/images/merchant/senka.png";
@@ -71,7 +73,7 @@ export const Images = {
   bca,
   bca2x,
   massageOil,
-  bodyshop,
+  alamin,
   burket,
   
   card,
@@ -80,4 +82,6 @@ export const Images = {
   backimg2,
   backimg3,
   message,
+  cardback,
+  bag,
 };

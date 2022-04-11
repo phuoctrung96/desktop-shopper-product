@@ -41,7 +41,12 @@ export const PaymentItem: React.FC<TPaymentItemProps> = ({
           /> )}
         </div>
       )}
-      <Radio defaultChecked></Radio>
+      {
+        data?.price && (
+          <h3 className="paymentItem__left-inforContainer-title">{data?.price}</h3>
+        )
+      }
+      <Radio></Radio>
     </div>
   );
 };

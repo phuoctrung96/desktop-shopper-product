@@ -20,6 +20,7 @@ type TInputProps = TextFieldProps & {
   inputProps?: any;
   readOnly?: boolean;
   inputType?: string;
+  handleChange?: any;
 }
 
 const useStyles = makeStyles({
@@ -113,6 +114,7 @@ export const Input: React.FC<TInputProps> = ({
   inputProps,
   readOnly = false,
   inputType,
+  handleChange,
   ...rest
 }) => {
   const classes = useStyles();
@@ -127,7 +129,8 @@ export const Input: React.FC<TInputProps> = ({
         size={size}
         variant={variant}
         className={classNames("item", inputClass, classes.root)}
-        onChange={(e) => validate(inputType, e)}
+        // onChange={(e) => validate(inputType, e)}
+        onClick={handleChange}
         inputProps={inputProps}
         InputProps={{
           startAdornment: startInput && (

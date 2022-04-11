@@ -9,8 +9,11 @@ import Checkbox from '@mui/material/Checkbox';
 import { Icons, LibraryIcons } from "../../utils";
 import { PaymentItem } from "./components";
 import { ProductItem } from "./components/ProductItem";
-import { walletData, creditCardData, TProductItem, compltedOrderData } from "./ShopperDashboard.data";
+import { walletData, creditCardData, TProductItem, compltedOrderData, courierData } from "./ShopperDashboard.data";
 import LockIcon from '@mui/icons-material/Lock';
+import MessageIcon from '@mui/icons-material/Message';
+import TextField from '@mui/material/TextField';
+import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded';
 
 const ShopperDashboard = () => {
 
@@ -19,6 +22,10 @@ const ShopperDashboard = () => {
   const [isDesModal, setIsDesModal] = useState<boolean>(false);
   const [isCheckoutStartModal, setIsCheckoutStartModal] = useState<boolean>(false);
   const [isCheckoutEndModal, setIsCheckoutEndModal] = useState<boolean>(false);
+  const [isDetailShipping, setIsDetailShipping] = useState<boolean>(false);
+  const [isSelectPayment, setIsSelectPayment] = useState<boolean>(false);
+  const [isSelectCourier, setIsSelectCourier] = useState<boolean>(false);
+  const [isVoucherCode, setIsVoucherCode] = useState<boolean>(false);
 
   const renderStartInput = () => {
     return (
@@ -34,6 +41,44 @@ const ShopperDashboard = () => {
     );
   };
 
+  const renderEndInput = () => {
+    return (
+      <Button type="primary">APPLY</Button>
+    );
+  };
+
+  const handleShowVoucherCode = () => {
+    setIsVoucherCode(true);
+  }
+
+  const handlehideVoucherCode = () => {
+    setIsVoucherCode(false);
+  }
+
+  const handleShowSelectPayment = () => {
+    setIsSelectPayment(true);
+  };
+
+  const handleHideSelectPayment = () => {
+    setIsSelectPayment(false);
+  };
+
+  const handleShowSelectCourier = () => {
+    setIsSelectCourier(true);
+  };
+
+  const handleHideSelectCourier = () => {
+    setIsSelectCourier(false);
+  };
+
+  const handleShowDetailShipping = () => {
+    setIsDetailShipping(true);
+  };
+
+  const handleHideDetailShipping = () => {
+    setIsDetailShipping(false);
+  };
+
   const showModal = () => {
     setIsCheckoutStartModal(false);
     setIsModalVisible(true);
@@ -45,6 +90,10 @@ const ShopperDashboard = () => {
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    handleHideDetailShipping();
+    handleHideSelectPayment();
+    handleHideSelectCourier();
+    handlehideVoucherCode();
   };
 
   const showPayModal = () => {
@@ -79,7 +128,7 @@ const ShopperDashboard = () => {
       <div className="col-md-8">
         <hr></hr>
         <div className="row">
-          <div className="col-md-2">
+          <div className="col-md-2" style={{lineHeight: "20px"}}>
             <p className="shopperDashboard__adver" style={{fontFamily: "Ebrima"}}>2</p>
             <p className="shopperDashboard__adver_txt" style={{fontFamily: "Ebrima"}}><b>The Best<br/>Luxury<br/>Massage Oil<br/>For<br/>Aromatherapy</b></p>
           </div>
@@ -87,7 +136,7 @@ const ShopperDashboard = () => {
             
             <div className="row">
               <div className="col-md-6">
-                <img src={Images.massageOil} width={350} height={350} alt="" />
+                <img src={Images.massageOil} width={270} height={270} alt="" style={{marginTop: "25px"}} />
               </div>
               <div className="col-md-6">
                 <div className="row">
@@ -106,24 +155,24 @@ const ShopperDashboard = () => {
                   </div>
                 </div>
                 <div className="row" style={{ fontSize: 38, color: "black", textAlign: "left"}}>
-                  <p style={{fontFamily: "Gulim", lineHeight: "35px", marginTop: "16px", marginLeft: "-8px"}}>Spa Of The World<br/>French Lavener<br/>Massage Oil 170ml</p>
+                  <p style={{fontFamily: "Gulim", lineHeight: "35px", marginTop: "16px", marginLeft: "-8px", marginBottom: "10px"}}>Spa Of The World<br/>French Lavender<br/>Massage Oil 170ml</p>
                 </div>
-                <div className="row" style={{backgroundColor: "rgba(148, 141, 141, 0.1)", width: '200px', textAlign: "left", marginLeft: "-4px"}}>
-                  <div style={{fontSize: "12px", color: "rgba(212, 12, 12, 0.8)", lineHeight: "20px"}}>50K Voucher</div>
-                  <div style={{display: "inherit", lineHeight: "14px"}}>
+                <div className="row" style={{backgroundImage: 'url('+Images.cardback+')', backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", width: '250px', height: '72px', textAlign: "left", marginLeft: "-4px", paddingLeft: "26px", paddingTop: "10px", paddingBottom: "10px"}}>
+                  <div style={{fontSize: "12px", color: "rgba(212, 12, 12, 0.8)", lineHeight: "20px"}}><b>50K Voucher</b></div>
+                  <div style={{display: "inherit", lineHeight: "14px"}} className="text-muted">
                     MNCAPR50
                     <div>
                       <p className="shopperDashboard-tag-copy" style={{padding: "3px 10px", marginLeft: "50px", marginTop: "-4px"}}>copy</p>
                     </div>
                   </div>
-                  <div style={{fontSize: "10px"}}><a href="#">View Detail</a></div>
+                  <div style={{fontSize: "10px"}}><a href="#"><u>View Detail</u></a></div>
                 </div>
                 <div className="row">
-                  <div className="col-md-6" style={{paddingTop: "12px", textAlign: "left", fontSize: "14px"}}>
-                    <p>Rp 299.000</p>
-                    <p style={{lineHeight: "0px", color: "tomato"}}>Rp 279.200</p>
+                  <div className="col-md-6" style={{height: "50px", marginTop: "10px", textAlign: "left", fontSize: "14px", borderTop: "2px solid rgb(230, 67, 36)", borderBottom: "2px solid rgb(230, 67, 36)"}}>
+                    <div className="text-muted" style={{textDecoration: "line-through"}}>Rp 299.000</div>
+                    <div style={{color: "rgb(230, 67, 36)"}}>Rp 279.200</div>
                   </div>
-                  <div className="col-md-6" style={{backgroundColor: "tomato", color: "white", height: "50px", paddingTop: "10px", marginTop: "10px"}} onClick={handleDesModal}>
+                  <div className="col-md-6 shopperDashboard-viewproduct" style={{cursor: "hand", backgroundColor: "rgb(230, 67, 36)", color: "white", height: "50px", paddingTop: "10px", marginTop: "10px"}} onClick={handleDesModal}>
                     View Product
                   </div>
                 </div>
@@ -156,13 +205,13 @@ const ShopperDashboard = () => {
       >
         <div className="row">
           <div className="col-md-6" style={{backgroundColor: "white"}}>
-            <div className='productDetail__productDetailContainer'>
+            <div className='productDetail__productDetailContainer' style={{padding: "19px 60px"}}>
               <div className="row">
                 <div className="col-md-6" style={{textAlign: "left"}}>
-                  <img src={Images.bodyShop} width={50} height={50}></img><b>THE BODY SHOP</b>
+                  <img src={Images.alamin} width={100} height={50}></img>
                 </div>
-                <div className="col-md-6" style={{textAlign: "right"}}>
-                  <img src={Images.burket} width={40} height={40}></img><b>RP 270.600</b>
+                <div className="col-md-6" style={{textAlign: "right", paddingTop: "10px"}}>
+                  <img src={Images.burket} width={30} height={30} style={{marginBottom: "5px"}}></img><b>RP 270.600</b>
                 </div>
               </div>
               <div className="row">
@@ -206,7 +255,7 @@ const ShopperDashboard = () => {
               </div>
               <br/>
               <div className="row">
-                <div className="col-md-6" style={{textAlign: "left"}}>
+                <div className="col-md-6" style={{textAlign: "left", paddingTop: "10px"}}>
                   <b>Shipping Address</b>
                 </div>
                 <div className="col-md-6" style={{textAlign: "right"}}>
@@ -222,62 +271,126 @@ const ShopperDashboard = () => {
                   startInput={renderStartInput()}
                   placeholder="The Olivia Apartments"
                   containerStyle={{ marginTop: 18 }}
+                  handleChange={handleShowDetailShipping}
                 />
               </div>
-              <div className="row">
-                <Input
-                  label="Apartment, Unit, Floor, etc. (Optional)"
-                  variant="standard"
-                  size="small"
-                  placeholder="23"
-                  containerStyle={{ marginTop: 18 }}
-                />
-              </div>
-              <div className="row">
-                <div className="col-md-4">
-                  <Input
-                    label="Province"
-                    variant="standard"
-                    size="small"
-                    placeholder="DKI Jakarta"
-                    containerStyle={{ marginTop: 18 }}
-                  />
-                </div>
-                <div className="col-md-4">
-                  <Input
-                    label="City"
-                    variant="standard"
-                    size="small"
-                    placeholder="Jakarta St"
-                    containerStyle={{ marginTop: 18 }}
-                  />
-                </div>
-                <div className="col-md-4">
-                  <Input
-                    label="Postal Code"
-                    variant="standard"
-                    size="small"
-                    placeholder="12345"
-                    containerStyle={{ marginTop: 18 }}
-                  />
-                </div>
-              </div>
+              {
+                isDetailShipping && (
+                  <div>
+                    <div className="row">
+                      <Input
+                        label="Apartment, Unit, Floor, etc. (Optional)"
+                        variant="standard"
+                        size="small"
+                        placeholder="23"
+                        containerStyle={{ marginTop: 18 }}
+                      />
+                    </div>
+                    <div className="row">
+                      <div className="col-md-4">
+                        <Input
+                          label="Province"
+                          variant="standard"
+                          size="small"
+                          placeholder="DKI Jakarta"
+                          containerStyle={{ marginTop: 18 }}
+                        />
+                      </div>
+                      <div className="col-md-4">
+                        <Input
+                          label="City"
+                          variant="standard"
+                          size="small"
+                          placeholder="Jakarta St"
+                          containerStyle={{ marginTop: 18 }}
+                        />
+                      </div>
+                      <div className="col-md-4">
+                        <Input
+                          label="Postal Code"
+                          variant="standard"
+                          size="small"
+                          placeholder="12345"
+                          containerStyle={{ marginTop: 18 }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )
+              }
               <p></p>
+
+              <div className="row">
+                <div className="col-md-6" style={{textAlign: "left"}}>
+                  <b>Courier</b>
+                </div>
+                {
+                  isSelectCourier && (
+                    <div className="col-md-6" style={{textAlign: "right"}}>
+                      <b><a href="#">Choose Courier</a></b>
+                    </div>
+                  )
+                }
+              </div>
+              {
+                !isSelectCourier && (
+                  <Input
+                    label=""
+                    variant="standard"
+                    size="small"
+                    placeholder="AnterAja, GoSend, Grab, JNE, J&T, SiCepat, Ninja, Lion ..."
+                    containerStyle={{ marginTop: 18 }}
+                    handleChange={handleShowSelectCourier}
+                  />
+                ) 
+              }
+              {
+                  isSelectCourier && (
+                  <div className="row">
+                    {courierData.map((item, index) => (
+                      <PaymentItem
+                        data={item} 
+                      />
+                    ))}
+                  </div>
+                  )
+              }
+
               <div className="row">
                 <div className="col-md-6" style={{textAlign: "left"}}>
                   <b>Payment</b>
                 </div>
-                <div className="col-md-6" style={{textAlign: "right"}}>
-                  <b><a href="#">Choose Payment</a></b>
-                </div>
+                {
+                  isSelectPayment && (
+                    <div className="col-md-6" style={{textAlign: "right"}}>
+                      <b><a href="#">Choose Payment</a></b>
+                    </div>
+                  )
+                }
               </div>
-              <div className="row">
-                {creditCardData.map((item, index) => (
-                  <PaymentItem
-                    data={item} 
+              {
+                !isSelectPayment && (
+                  <Input
+                    label=""
+                    variant="standard"
+                    size="small"
+                    placeholder="Virtual Account, Credit Card, GoPay, OVO, ShopeePay ..."
+                    containerStyle={{ marginTop: 18 }}
+                    handleChange={handleShowSelectPayment}
                   />
-                ))}
-              </div>
+                ) 
+              }
+              {
+                  isSelectPayment && (
+                  <div className="row">
+                    {creditCardData.map((item, index) => (
+                      <PaymentItem
+                        data={item} 
+                      />
+                    ))}
+                  </div>
+                  )
+              }
             </div>
           </div>
 
@@ -291,8 +404,26 @@ const ShopperDashboard = () => {
               {compltedOrderData.map((item: TProductItem, index: number) => (
                 <ProductItem isSeccondView data={item} className="productDetail__productDetailContainer-productItem" />
               ))}
-              
               <div className='productDetail__productPriceContainer'>
+                {
+                  !isVoucherCode && (
+                    <p style={{color: "blue"}}><a onClick={handleShowVoucherCode}><u>Use Voucher Code</u></a></p>
+                  )
+                }
+                {
+                  isVoucherCode && (
+                    <div style={{paddingLeft: "45px", width: "300px", marginLeft: "25px"}}>
+                      <Input
+                        label="Enter Voucher Code"
+                        variant="standard"
+                        size="small"
+                        placeholder=""
+                        endInput={renderEndInput()}
+                      ></Input>
+                      <p></p>
+                    </div>
+                  )
+                }
                 <div className='productDetail__productPriceContainer-content'>
                   <p className='productDetail__productPriceContainer-content-key'>Subtotal</p>
                   <p className='productDetail__productPriceContainer-content-value'>Rp 498.100</p>
@@ -311,10 +442,10 @@ const ShopperDashboard = () => {
                 </div>
               </div>
               
-              <div className='productDetail__productButtonContainer' style={{textAlign: "center", color: "rgba(179, 174, 174, 0.2)", paddingTop: "112px"}}>
-                <Button type="primary" onClick={showPayModal}><LockIcon></LockIcon> Confirm & Pay</Button>
-                <p className='productDetail__productPriceContainer-content-key'>By clicking the button above, you agree </p>
-                <p className='productDetail__productPriceContainer-content-key'>Fix's <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></p>
+              <div className='productDetail__productButtonContainer' style={{textAlign: "center", color: "rgba(179, 174, 174, 0.2)", paddingTop: "45px"}}>
+                <Button type="primary" onClick={showPayModal} style={{width: "250px", backgroundColor: "rgb(230, 67, 36)", border: "1px solid rgb(230, 67, 36)"}}><LockIcon></LockIcon> Confirm & Pay</Button>
+                <p className='productDetail__productPriceContainer-content-key' style={{fontSize: "12px"}}>By clicking the button above, you agree </p>
+                <p className='productDetail__productPriceContainer-content-key' style={{fontSize: "12px"}}>Fix's <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></p>
               </div>
             </div>
           </div>
@@ -330,13 +461,13 @@ const ShopperDashboard = () => {
       >
         <div className="row">
           <div className="col-md-6" style={{backgroundColor: "white"}}>
-            <div className='productDetail__productDetailContainer'>
+            <div className='productDetail__productDetailContainer' style={{padding: "19px 60px"}}>
               <div className="row">
                 <div className="col-md-6" style={{textAlign: "left"}}>
-                  <img src={Images.bodyShop} width={50} height={50}></img><b>THE BODY SHOP</b>
+                  <img src={Images.alamin} width={100} height={50}></img>
                 </div>
-                <div className="col-md-6" style={{textAlign: "right"}}>
-                  <img src={Images.burket} width={40} height={40}></img><b>RP 270.600</b>
+                <div className="col-md-6" style={{textAlign: "right", paddingTop: "10px"}}>
+                  <img src={Images.burket} width={30} height={30} style={{marginBottom: "5px"}}></img><b>RP 270.600</b>
                 </div>
               </div>
               <div className="row" style={{textAlign: "center", marginTop: "114px"}}>
@@ -347,7 +478,7 @@ const ShopperDashboard = () => {
                   <p style={{fontFamily: "Gulim", fontSize: "20px"}}>Authenticate Using</p>
                   <p style={{fontFamily: "Gulim", fontSize: "20px", lineHeight: "0px"}}>One Time Password(OTP)</p>
                 </b>
-                <div className='productDetail__productDetailContainer' style={{backgroundColor: "rgba(219, 214, 214, 0.425)", height: "128px", fontSize: "12px", marginLeft: "41px", marginRight: "30px", width: "337px"}}>
+                <div className='productDetail__productDetailContainer' style={{backgroundColor: "rgba(219, 214, 214, 0.425)", height: "128px", fontSize: "12px", marginLeft: "20px", marginRight: "30px", width: "337px"}}>
                   A verification code has been sent to your mobile<br/>
                   phone +6282123456789. Enter the authorization code<br/>
                   to approve this transaction before the transaction<br/>
@@ -392,8 +523,8 @@ const ShopperDashboard = () => {
                 </div>
               </div>
               <div className="row" style={{textAlign: "center", paddingTop: "20px"}}>
-                <div className="col-md-6" style={{textAlign: "center"}}><Button style={{width: "150px"}}>Cancel</Button></div>
-                <div className="col-md-6" style={{textAlign: "center"}}><Button type="primary" style={{width: "150px"}} onClick={checkoutEndModal}>Proceed</Button></div>
+                <div className="col-md-6" style={{textAlign: "center"}}><Button style={{width: "150px", color: "rgb(230, 67, 36)", border: "1px solid rgb(230, 67, 36)"}}>Cancel</Button></div>
+                <div className="col-md-6" style={{textAlign: "center"}}><Button type="primary" style={{width: "150px", backgroundColor: "rgb(230, 67, 36)", border: "1px solid rgb(230, 67, 36)"}} onClick={checkoutEndModal}>Proceed</Button></div>
               </div>
             </div>
           </div>
@@ -402,7 +533,7 @@ const ShopperDashboard = () => {
 
       <Modal
         visible={isDesModal}
-        width={1000}
+        width={850}
         centered
         footer={null}
         onCancel={() => setIsDesModal(false)}
@@ -433,19 +564,19 @@ const ShopperDashboard = () => {
           </div>
           <div className="desModal__w60">
             <div className="flashdeal">
-              <div><span>Flash Deal</span></div>
-              <div>end in<span>02</span>:<span>30</span>:<span>18</span></div>
+              <div><span style={{backgroundColor: "rgba(250, 76, 76, 0.8)"}}>Flash Deal</span></div>
+              <div>Ends In <span>02</span>:<span>30</span>:<span>18</span></div>
             </div>
             <div className="subtitlebolb">
-              <span>The Body Shop</span>
+              <span>The Body Shop <CheckCircleOutlineRoundedIcon color="primary" /></span>
             </div>
             <div className="title">
               <h4>Spa Of The World French<br />Lavender Massage Oil 170ml</h4>
             </div>
             <div className="subtitle">
-              <span>SKU Code: 983980034</span>
+              <span style={{fontSize: "14px", color: "gainsboro"}}>SKU Code: 983980034</span>
             </div>
-            <div className="voucherstyle"> 
+            {/* <div className="voucherstyle"> 
               <div className="card">
                 <span>Voucher 15% off up to Rp 30.000</span>
                 <div className="paypart">                  
@@ -460,34 +591,48 @@ const ShopperDashboard = () => {
                   <span className="cardstatus">Applied</span>
                 </div>
               </div>
+            </div> */}
+            <div className="row" style={{backgroundImage: 'url('+Images.cardback+')', backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", width: '230px', height: '78px', textAlign: "left", marginLeft: "-4px", paddingLeft: "26px", paddingTop: "10px", paddingBottom: "10px"}}>
+              <div style={{fontSize: "12px", color: "rgba(212, 12, 12, 0.8)", lineHeight: "20px"}}><b>50K Voucher</b></div>
+              <div style={{display: "inherit", lineHeight: "14px"}} className="text-muted">
+                <div style={{paddingTop: "4px"}}>
+                  MNCAPR50
+                </div>
+                <div className="flashdeal">
+                  <span style={{backgroundColor: "green", marginLeft: "42px"}}>Copied</span>
+                </div>
+              </div>
+              <div style={{fontSize: "10px"}}><a href="#"><u>View Detail</u></a></div>
             </div>
             <div className="price">
-              <span className="discount">Rp 299.000</span><h5>Rp 279.200</h5><span className="discountper">15%</span>
+              <span className="discount" style={{textDecoration: "line-through"}}>Rp 299.000</span><h5>Rp 279.200</h5><span className="discountper">15%</span>
             </div>
-            <div className="size">
-              <span className="smalltext">Size</span>
-              <div className="box">50ml</div>
-              <div className="box">70ml</div>
-              <div className="selected">170ml</div>
-            </div>
-            <div className="color">
-              <span className="smalltext">Color</span>
-              <div className="box">Rosewater</div>
-              <div className="box">Cherry Blossom</div>
-              <div className="selected">Peony</div>
-            </div>
-            <div className="quantity">
-              <span className="smalltext">Quantity</span>
-              <div className="count">
-                <button>-</button>
-                <input className="counttext" id="countChange" type='text' value="1" />
-                <button>+</button>
+            <div>
+              <div className="size">
+                <span className="smalltext">Size</span>
+                <div className="box">50ml</div>
+                <div className="box">70ml</div>
+                <div className="selected">170ml</div>
               </div>
-              <div className="items">500 items Solid</div>
+              <div className="color">
+                <span className="smalltext">Color</span>
+                <div className="box">Rosewater</div>
+                <div className="box">Cherry Blossom</div>
+                <div className="selected">Peony</div>
+              </div>
+              <div className="quantity">
+                <span className="smalltext">Quantity</span>
+                <div className="count">
+                  <button>-</button>
+                  <input className="counttext" id="countChange" type='text' value="1" />
+                  <button>+</button>
+                </div>
+                <div className="items" style={{marginLeft: "-85px", paddingTop: "3px"}}>500 items Solid</div>
+              </div>
             </div>
             <div className="button">
-              <div className="messagebutton"><img src={Images.message} /></div>
-              <div className="checkoutbutton" onClick={checkoutStartModal}><span>checkout with</span><img src={Images.logo1} /></div>
+              <div className="messagebutton"><MessageIcon style={{color: "rgb(230, 67, 36)", width: "30px"}} /></div>
+              <div className="checkoutbutton" onClick={checkoutStartModal}><span><LockIcon />checkout</span></div>
             </div>
           </div>          
         </div>
@@ -495,17 +640,16 @@ const ShopperDashboard = () => {
 
       <Modal className="checkoutstartModal" visible={isCheckoutStartModal} width={1000} centered okText={'Checkout'} onOk={showModal} onCancel={() => setIsCheckoutStartModal(false)}>
         <div className="checkoutstart">
-          <div className="logo"><img src={Images.logo1} /></div>
+          <div className="logo"><img src={Images.bag} /></div>
           <div className="title"><h3>Hi Laura!</h3></div>
           <div className="content"><span>We’re placing your order. <br />With Flik, you can always edit <br />your order after.</span></div>
         </div>
       </Modal>
 
-      <Modal className="checkoutendModal" visible={isCheckoutEndModal} width={1000} centered cancelText={'View Order'} onCancel={() => setIsCheckoutEndModal(false)}>
+      <Modal className="checkoutendModal" visible={isCheckoutEndModal} width={1000} centered cancelText={'View Order'} onCancel={() => setIsCheckoutEndModal(false)} style={{color: "rgb(230, 67, 36)"}}>
         <div className="checkoutend">
           <div className="title"><h3>Thank you for <br />your shopping with us!</h3></div>
           <div className="content"><span>The amount of Rp 270.600 has been deducted<br /> from your Credit Card Balance</span></div>
-          <div className="view"><span>View your order on useflik.com</span></div>
         </div>
       </Modal>
     </div >

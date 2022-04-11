@@ -170,3 +170,16 @@ export const creditCardData = [
     isActivated: false,
   },
 ];
+
+export const courierData = [
+  {
+    id: 0,
+    title: "AnterAja",
+    description: "Pengirman (2-3 hari)",
+    image: Images.anterAja,
+    isDefault: false,
+    isAdd: false,
+    isActivated: false,
+    price: "Rp 17.00",
+  },
+];
