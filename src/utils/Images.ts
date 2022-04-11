@@ -1,6 +1,7 @@
 //new
 import card from "../assets/images/card/card.png";
 import message from "../assets/images/card/message.png";
+import message1 from "../assets/images/message1.png";
 import logo1 from "../assets/images/logo1.png";
 import cardback from "../assets/images/cardback.png";
 
@@ -19,6 +20,7 @@ import flat from "../assets/images/flat.png";
 import alamin from "../assets/images/alamin.png";
 import burket from "../assets/images/burket.png";
 import bag from "../assets/images/bag.png";
+import detail from "../assets/images/detail.png";
 
 import bodyShop from "../assets/images/merchant/body-shop.png";
 import senka from "../assets/images/merchant/senka.png";
@@ -84,4 +86,6 @@ export const Images = {
   message,
   cardback,
   bag,
+  detail,
+  message1,
 };

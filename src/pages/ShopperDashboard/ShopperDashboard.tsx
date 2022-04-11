@@ -12,7 +12,6 @@ import { ProductItem } from "./components/ProductItem";
 import { walletData, creditCardData, TProductItem, compltedOrderData, courierData } from "./ShopperDashboard.data";
 import LockIcon from '@mui/icons-material/Lock';
 import MessageIcon from '@mui/icons-material/Message';
-import TextField from '@mui/material/TextField';
 import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded';
 
 const ShopperDashboard = () => {
@@ -26,6 +25,7 @@ const ShopperDashboard = () => {
   const [isSelectPayment, setIsSelectPayment] = useState<boolean>(false);
   const [isSelectCourier, setIsSelectCourier] = useState<boolean>(false);
   const [isVoucherCode, setIsVoucherCode] = useState<boolean>(false);
+  const [isDetailVisible, setIsDetailVisible] = useState<boolean>(false);
 
   const renderStartInput = () => {
     return (
@@ -45,6 +45,14 @@ const ShopperDashboard = () => {
     return (
       <Button type="primary">APPLY</Button>
     );
+  };
+
+  const handleShowDetail = () => {
+    setIsDetailVisible(true);
+  };
+
+  const handleHideDetail = () => {
+    setIsDetailVisible(false);
   };
 
   const handleShowVoucherCode = () => {
@@ -407,7 +415,7 @@ const ShopperDashboard = () => {
               <div className='productDetail__productPriceContainer'>
                 {
                   !isVoucherCode && (
-                    <p style={{color: "blue"}}><a onClick={handleShowVoucherCode}><u>Use Voucher Code</u></a></p>
+                    <p><a href="#" onClick={handleShowVoucherCode}><u>Use Voucher Code</u></a></p>
                   )
                 }
                 {
@@ -602,7 +610,7 @@ const ShopperDashboard = () => {
                   <span style={{backgroundColor: "green", marginLeft: "42px"}}>Copied</span>
                 </div>
               </div>
-              <div style={{fontSize: "10px"}}><a href="#"><u>View Detail</u></a></div>
+              <div style={{fontSize: "10px"}}><a onClick={handleShowDetail} href="#"><u>View Detail</u></a></div>
             </div>
             <div className="price">
               <span className="discount" style={{textDecoration: "line-through"}}>Rp 299.000</span><h5>Rp 279.200</h5><span className="discountper">15%</span>
@@ -623,16 +631,16 @@ const ShopperDashboard = () => {
               <div className="quantity">
                 <span className="smalltext">Quantity</span>
                 <div className="count">
-                  <button>-</button>
-                  <input className="counttext" id="countChange" type='text' value="1" />
-                  <button>+</button>
+                  <div className="box" style={{width: "25px"}}>-</div>
+                  <div className="box" style={{margin: "0px -5px", width: "57px", textAlign: "center"}}>1</div>
+                  <div className="box">+</div>
                 </div>
-                <div className="items" style={{marginLeft: "-85px", paddingTop: "3px"}}>500 items Solid</div>
+                {/* <div className="items" style={{marginLeft: "-85px", paddingTop: "6px", fontSize: "11px"}}><b>500 items Solid</b></div> */}
               </div>
             </div>
             <div className="button">
-              <div className="messagebutton"><MessageIcon style={{color: "rgb(230, 67, 36)", width: "30px"}} /></div>
-              <div className="checkoutbutton" onClick={checkoutStartModal}><span><LockIcon />checkout</span></div>
+              <div><img src={Images.message1} width={35} /></div>
+              <div className="checkoutbutton" onClick={checkoutStartModal} style={{paddingLeft: "30px"}}><span style={{fontSize: "12px"}}><LockIcon style={{width: "15px", paddingBottom: "4px"}}/>checkout</span></div>
             </div>
           </div>          
         </div>
@@ -651,6 +659,39 @@ const ShopperDashboard = () => {
           <div className="title"><h3>Thank you for <br />your shopping with us!</h3></div>
           <div className="content"><span>The amount of Rp 270.600 has been deducted<br /> from your Credit Card Balance</span></div>
         </div>
+      </Modal>
+
+      <Modal visible={isDetailVisible} width={500} centered onCancel={handleHideDetail} footer={null}>
+          <div className="row">
+            <div className="col-md-2">
+              <img src={Images.detail} width={50} height={50} />
+            </div>
+            <div className="col-md-10">
+              <p style={{fontSize: "22px"}}><b>Voucher Discount Rp 50.000</b></p>
+              <p style={{marginTop: "-20px"}}>Valid until 30 April 2022</p>
+              <p></p>
+              <p><b>Terms & Conditions:</b></p>
+              <ul style={{marginTop: "-10px"}}>
+                <li>Voucher discount Rp 50.000</li>
+                <li>Minimum purchase Rp 250.000</li>
+                <li>Valid once for each customer</li>
+                <li>Valid until 30 April 2022</li>
+              </ul>
+            </div>
+          </div>
+          <div className="row">
+            <div className="row" style={{backgroundImage: 'url('+Images.cardback+')', backgroundRepeat: "no-repeat", backgroundSize: "100% 100%", width: '480px', height: '72px', textAlign: "left", marginLeft: "-4px", paddingLeft: "55px", paddingTop: "16px", paddingBottom: "10px"}}>
+              <div className="col-md-9">
+                <div text-muted style={{fontSize: "12px", lineHeight: "20px"}}>50K Voucher</div>
+                <div style={{display: "inherit", lineHeight: "14px"}}>
+                  <b>MNCAPR50</b>
+                </div>
+              </div>
+              <div className="col-md-3" style={{marginTop: "10px"}}>
+                <span style={{backgroundColor: "green", marginLeft: "-20px", borderRadius: "5px", color: "white", padding: "5px 18px"}}>Copied</span>
+              </div>
+            </div>
+          </div>
       </Modal>
     </div >
   );
